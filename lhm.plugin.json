@@ -1,0 +1,21 @@
+{
+  "identifier": "work-insiders",
+  "name": "Work Insiders MCP Server",
+  "version": "1.1.0",
+  "description": "Ask your AI assistant about 1,000+ recruiting, HR and sales tools: starting prices with the date checked, side-by-side comparisons, alternatives and ATS integrations, straight from the Work Insiders directory.",
+  "author": "Work Insiders",
+  "homepage": "https://workinsiders.com/mcp-server/",
+  "cloudEndpoint": "https://workinsiders.com/mcp",
+  "icon": "💼",
+  "category": "productivity",
+  "tags": ["recruiting", "hr", "hiring", "sales", "sourcing", "ats", "tools", "directory"],
+  "tools": [
+    {"name": "workinsiders_search_tools", "description": "Searches the Work Insiders directory of 1,000+ recruiting, HR, sales prospecting and AI tools by free text and filters: category, first party MCP server, API, free plan, free trial, AI-native and maximum starting price. Returns up to 25 tools per page.", "inputSchema": {"type": "object", "properties": {"query": {"type": "string"}, "category": {"type": "string"}, "max_monthly_price": {"type": "number"}, "limit": {"type": "integer"}}}},
+    {"name": "workinsiders_get_tool", "description": "Returns the full Work Insiders profile of one named tool: what it does, pricing with plans and the date the price was checked, free trial, MCP and API, AI features, strengths, watch-outs, pros and cons, integrations, Capterra rating and named alternatives.", "inputSchema": {"type": "object", "properties": {"tool": {"type": "string"}}, "required": ["tool"]}},
+    {"name": "workinsiders_compare_tools", "description": "Side by side comparison of 2 to 4 named tools: starting price, free plan and trial, MCP, API, AI-native, best for, watch-outs, bottom line and Capterra rating.", "inputSchema": {"type": "object", "properties": {"tools": {"type": "array", "items": {"type": "string"}, "minItems": 2, "maxItems": 4}}, "required": ["tools"]}},
+    {"name": "workinsiders_find_alternatives", "description": "Alternatives to one named tool, filterable by MCP, free plan and price.", "inputSchema": {"type": "object", "properties": {"tool": {"type": "string"}}, "required": ["tool"]}},
+    {"name": "workinsiders_list_categories", "description": "Lists every Work Insiders category with its slug, tool count and page link.", "inputSchema": {"type": "object", "properties": {}}},
+    {"name": "workinsiders_category_overview", "description": "What a category costs and who leads it: tool count, median public starting price, editor picks, cheapest public prices.", "inputSchema": {"type": "object", "properties": {"category": {"type": "string"}}, "required": ["category"]}},
+    {"name": "workinsiders_ats_integrations", "description": "Which tools integrate with an applicant tracking system (Bullhorn, Greenhouse, Lever, Workday, JobAdder and others), with vendor confirmation and sync direction.", "inputSchema": {"type": "object", "properties": {"ats": {"type": "string"}}, "required": ["ats"]}}
+  ]
+}
