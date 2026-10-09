@@ -14,7 +14,13 @@ jobs:
       contents: read
     steps:
       - uses: actions/checkout@v4
-      - name: Publish to MCP Registry
+      - name: Install mcp-publisher
         run: |
-          curl -sSL https://github.com/modelcontextprotocol/registry/releases/latest/download/mcp-publisher-linux-amd64.tar.gz | tar xz
+          curl -fsSL "https://github.com/modelcontextprotocol/registry/releases/latest/download/mcp-publisher_linux_amd64.tar.gz" | tar xz mcp-publisher
+      - name: Validate and publish
+        env:
+          MCP_GITHUB_TOKEN: ${{ secrets.MCP_GITHUB_TOKEN }}
+        run: |
+          ./mcp-publisher validate
+          ./mcp-publisher login github
           ./mcp-publisher publish
